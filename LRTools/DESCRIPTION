@@ -1,0 +1,18 @@
+Package: LRTools
+Title: A collection of functions written for analyzing Illumina HM450 and EPIC data
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Lionel",
+           family = "Rohner",
+           role = c("aut", "cre"),
+           email = "lionel.rohner@gmail.com")
+Description: This is a small collection of the most useful functions I wrote during my master project. The package consists of functions that are necessary for the bioinformatics pipeline that I used to analyze Illumina HM450 and EPIC data. The package also includes other useful functions that can be helpful when analyzing DNA methylation data from these platforms.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: matrixStats, pwr, ChAMP, ChAMPdata, akmedoids
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+
