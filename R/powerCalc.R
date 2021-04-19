@@ -1,6 +1,8 @@
 #' powerCalc
 #'
-#'The purpose of this function is to evaluate the power and estimated sample size across all CpG probes present in a beta-value or M-value matrix. The calculation of power and sample size estimation are based on the t-test functions of the \emph{pwr} package and can only be performed between features that have two levels, e.g., primary PanNET versus metastasis. PowerCalc works for normal two-group designs or paired designs.
+#' The purpose of this function is to evaluate the power and estimated sample size across all CpG probes present in a beta-value or M-value matrix. The calculation of power and sample size estimation are based on the t-test functions of the \emph{pwr} package and can only be performed between features that have two levels, e.g., primary PanNET versus metastasis. PowerCalc works for normal two-group designs or paired designs.
+#' The core functions used in powerCalc are from the \emph{pwr} package created by Stephane Champely [aut], Claus Ekstrom [ctb], Peter Dalgaard [ctb], Jeffrey Gill [ctb], Stephan Weibelzahl [ctb], Aditya Anandkumar [ctb], Clay Ford [ctb], Robert Volcic [ctb], and Helios De Rosario [cre]. \emph{pwr} is licensed under GPL (>= 3).
+#'
 #'
 #' @param betaMatrix A matrix of beta-values where the rows are the CpG probes and the columns are the samples.
 #' @param pdGroups A \emph{minfi}- or \emph{ChAMP}-type sample sheet with group information, e.g. pd\$Sample\_Group.
@@ -24,13 +26,15 @@
 #' pd <- data.frame(c(rep("Group_1",3),rep("Group_2",3)))
 #' colnames(pd) <- "Groups"
 #'
-#' powerCalc_v3(betaMatrix = as.matrix(A),
-#'              type = "unpaired",
-#'              pdGroups = pd$Groups,
-#'              nameGroups = c("Group_1","Group_2"),
-#'              M = TRUE,
-#'              cutOff = 0.1)
-powerCalc_v3 <- function(betaMatrix,
+#' A <- as.matrix(A)
+#'
+#' powerCalc(betaMatrix = A,
+#'           type = "unpaired",
+#'           pdGroups = pd$Groups,
+#'           nameGroups = c("Group_1","Group_2"),
+#'           M = TRUE,
+#'           cutOff = 0.1)
+powerCalc <- function(betaMatrix,
                          pdGroups,
                          nameGroups,
                          alpha = 1e-6,
@@ -291,7 +295,7 @@ powerCalc_v3 <- function(betaMatrix,
     powerAnalysis = rbind(powerAnalysis, res)
 
     # progress
-    cat(sprintf("\r%.3f%%", (i / (loop_lim) * 100)))
+    # cat(sprintf("\r%.3f%%", (i / (loop_lim) * 100)))
   }
   message("\n")
   message("[Step 4]\n")
