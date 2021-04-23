@@ -1,6 +1,8 @@
 ---
 title: "LRTools Vignette"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{LRTools Vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,6 +16,160 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, include = F}
 library(LRTools)
+```
+
+## Introduction ##
+This is a small collection of the most useful functions I wrote during my master project. The package consists of functions that are necessary for the bioinformatics pipeline that I used to analyze Illumina HM450 and EPIC data. The package also includes other useful functions that can be helpful when analyzing DNA methylation data from these platforms.
+
+### Installation & Dependecies ###
+To install this package use : ```devtools::install_github("LionelRohner/LRTools")``` <br />
+Following packages are required to use all functions of this pacakge: ```matrixStats, pwr, ChAMP, ChAMPdata, akmedoids, ggplot2```
+
+
+### Beta_To_M ###
+
+Conversion of beta-values to M-values.
+
+#### Description:####
+This function performs a logit transform ($M=log2(beta)-log2(beta-1)$) on beta-values as single values or in vector, matrix, or data.frame form. M-values are not defined for beta-values equal to 0 or 1. A warning message will be displayed in case of presence of 0 and 1 in the matrix.
+
+#### Arguments ####
+- **beta**: A numeric variable, vector or matrix corresponding to a beta-value. Has to be between 0 and 1.
+
+#### Return: #### 
+- Logit transform of the input beta-values: $M_i = log_2(\frac{beta_i}{1-beta_i})$
+
+
+
+#### Examples:#### 
+
+```{r}
+vecBeta <- runif(100,0,1)
+vecM <- Beta_To_M(vecBeta)
+head(vecM)
+```
+
+
+### champ.load_extended ###
+
+Modified champ.load function from the \emph{ChAMP} package
+
+#### Description:####
+This is a modification of the function "champ.load" from the \emph{ChAMP} package, which allows to use the Noob background correction. The original function from \emph{ChAMP} loads data from IDAT files to calculate intensity and produce quality control images. Furthermore, a new argument has been added that allows to load a specific sample sheet using a regular expression. This avoids the errors of the normal loading function when multiple csv files are found in the working directory. Only the new arguments are presented here. The other arguments can be found in the \emph{ChAMP} manual here: https://rdrr.io/bioc/ChAMP/man/champ.load.html.
+The modification are minor, see line 94 and 104 to 111, everything else is from the \emph{ChAMP} package created by Yuan Tian \link{cre,aut}, Tiffany Morris \link{ctb}, Lee Stirling \link{ctb}, Andrew Feber \link{ctb}, Andrew Teschendorff \link{ctb}, Ankur Chakravarthy \link{ctb}. \emph{ChAMP} is licensed under GPL-3.
+
+#### Arguments ####
+**sampleSheet.csv:** An optional argument, that allows to add the name of a specific sample sheet using regular expressions.}
+
+**preproc:** Choice of the preprocessing method of the rgSet. To use Noob dye bias and background correction use "Noob". The function is available in the \emph{minfi} package. Using "Raw" is the standard \emph{ChAMP} method and does not include background correction.}
+
+**dyeMethod:** To date single sample procedure of Noob ("single") is the only choice here.}
+
+**directory:** See ChAMP manual.
+
+**method:** See ChAMP manual.
+
+**methValue:** See ChAMP manual.
+
+**autoimpute:** See ChAMP manual.
+
+**filterDetP:** See ChAMP manual.
+
+**ProbeCutoff:** See ChAMP manual.
+
+**SampleCutoff:** See ChAMP manual.
+
+**detPcut:** See ChAMP manual.
+
+**filterBeads:** See ChAMP manual.
+
+**beadCutoff:** See ChAMP manual.
+
+**filterNoCG:** See ChAMP manual.
+
+**filterSNPs:** See ChAMP manual.
+
+**population:** See ChAMP manual.
+
+**filterMultiHit:** See ChAMP manual.
+
+**filterXY:** See ChAMP manual.
+
+**force:** See ChAMP manual.
+
+**arraytype:** See ChAMP manual.
+
+
+#### Return: #### 
+- A list including the rgSet, mSet, beta-value matrix, detection p-value matrix, and a matrix of intensity values. See \emph{ChAMP} manual for more detail.
+
+
+#### Examples:#### 
+
+```{r, eval=FALSE}
+myLoad_450K <- champ.load_extended(method = "minfi",
+                                 arraytype = "450K",
+                                 sampleSheet.csv ="^someSampleSheet.csv$",
+                                 preproc = "Noob",
+                                 dyeMethod = "single")
+```
+
+### checkBMIQ ###
+
+Plot the beta distribution of Infinium I and II probes before and after BMIQ-correction.
+
+#### Description:####
+This function can be used to evaluate the beta-value distribution of Infinium I and II probes before and after probe bias correction with BMIQ. Although implemented to check BMIQ performance, this function can be used to evaluate Infinium I and II probe distribution at any step of the pipeline and is also not limited to BMIQ-corrected beta-value matrices. By default, the function represents the mean density of Infinium I and II probes across all samples. It may be advisable to check for updates to \emph{ChAMP} and \emph{ChAMPdata} as new EPIC manifests are released from time to time.
+
+#### Arguments ####
+**betaBefore:** The beta-value matrix before BMIQ correction. The rows should be CpG probes and the columns samples.
+
+**betaAfter:** The beta-value matrix after BMIQ correction. The rows should be CpG probes and the columns samples.
+
+**array:** Selection of the array type. For EPIC data use "EPIC" and everything else will be interpreted as HM450 data. By default HM450 data is assumed.
+
+**sampleChoice:** To check individual samples, enter a sample name as it appears in the column names. Multiple samples can be entered with regular expressions, e.g. ""aPxxx|aPyy"".
+
+#### Return: #### 
+- No return. A plot should appear in the \emph{Plots} pane.
+
+
+#### Examples:#### 
+
+```{r, eval=FALSE}
+checkBMIQ(betaBefore = beta,
+                    betaAfter = beta_BMIQcorrected,
+                    array = "450K")
+```
+
+
+### cohensD_Paired ###
+
+Plot the beta distribution of Infinium I and II probes before and after BMIQ-correction.
+
+#### Description:####
+This function can be used to evaluate the beta-value distribution of Infinium I and II probes before and after probe bias correction with BMIQ. Although implemented to check BMIQ performance, this function can be used to evaluate Infinium I and II probe distribution at any step of the pipeline and is also not limited to BMIQ-corrected beta-value matrices. By default, the function represents the mean density of Infinium I and II probes across all samples. It may be advisable to check for updates to \emph{ChAMP} and \emph{ChAMPdata} as new EPIC manifests are released from time to time.
+
+#### Arguments ####
+**meanD:** Mean of the differences between measurements}
+
+**sigmaD:** SD of the differences between measurements}
+
+#### Return: #### 
+- Cohen's D for paired data. Adapted from \emph{rstatix}
+
+
+#### Examples:#### 
+
+```{r}
+before <- rnorm(1000, 10, 2)
+after <- rnorm(1000,20, 4)
+D <- before - after
+meanD <- mean(D)
+sigmaD <- sd(D)
+cohensD_Paired(meanD = meanD,
+               sigmaD = sigmaD)
+
 ```
