@@ -31,7 +31,7 @@ topN_variableX <- function(mat, topN = 1000, plot = T){
   VarN <- Var[c(1:topN)]
 
   if (plot == T){
-    plot(VarN, main = paste("Top ", topN, "most variable rows in the matrix"))
+    plot(VarN, main = paste("Top", topN, "most variable rows in the matrix"))
   }
 
   mat_out <- mat[names(VarN),]

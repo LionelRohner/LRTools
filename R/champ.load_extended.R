@@ -1,7 +1,7 @@
 #' Modified champ.load function from the \emph{ChAMP} package
 #'
 #' This is a modification of the function "champ.load" from the \emph{ChAMP} package, which allows to use the Noob background correction. The original function from \emph{ChAMP} loads data from IDAT files to calculate intensity and produce quality control images. Furthermore, a new argument has been added that allows to load a specific sample sheet using a regular expression. This avoids the errors of the normal loading function when multiple csv files are found in the working directory. Only the new arguments are presented here. The other arguments can be found in the \emph{ChAMP} manual here: https://rdrr.io/bioc/ChAMP/man/champ.load.html.
-#' The modification are minor, see line 94 and 104 to 111, everything else is from the \emph{ChAMP} package created by Yuan Tian [cre,aut], Tiffany Morris [ctb], Lee Stirling [ctb], Andrew Feber [ctb], Andrew Teschendorff [ctb], Ankur Chakravarthy [ctb]. \emph{ChAMP} is licensed under GPL-3.
+#' The modification are minor, see line 94 and 104 to 111, everything else is from the \emph{ChAMP} package created by Yuan Tian (cre,aut), Tiffany Morris (ctb), Lee Stirling (ctb), Andrew Feber (ctb), Andrew Teschendorff (ctb), Ankur Chakravarthy (ctb). \emph{ChAMP} is licensed under GPL-3.
 #'
 #' @param preproc Choice of the preprocessing method of the rgSet. To use Noob dye bias and background correction use "Noob". The function is available in the \emph{minfi} package. Using "Raw" is the standard \emph{ChAMP} method and does not include background correction.
 #' @param dyeMethod To date single sample procedure of Noob ("single") is the only choice here.

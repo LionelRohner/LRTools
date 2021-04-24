@@ -1,7 +1,7 @@
-#' powerCalc
+#' Power and sample size estimation
 #'
 #' The purpose of this function is to evaluate the power and estimated sample size across all CpG probes present in a beta-value or M-value matrix. The calculation of power and sample size estimation are based on the t-test functions of the \emph{pwr} package and can only be performed between features that have two levels, e.g., primary PanNET versus metastasis. PowerCalc works for normal two-group designs or paired designs.
-#' The core functions used in powerCalc are from the \emph{pwr} package created by Stephane Champely [aut], Claus Ekstrom [ctb], Peter Dalgaard [ctb], Jeffrey Gill [ctb], Stephan Weibelzahl [ctb], Aditya Anandkumar [ctb], Clay Ford [ctb], Robert Volcic [ctb], and Helios De Rosario [cre]. \emph{pwr} is licensed under GPL (>= 3).
+#' The core functions used in powerCalc are from the \emph{pwr} package created by Stephane Champely (aut), Claus Ekstrom (ctb), Peter Dalgaard (ctb), Jeffrey Gill (ctb), Stephan Weibelzahl (ctb), Aditya Anandkumar (ctb), Clay Ford (ctb), Robert Volcic (ctb), and Helios De Rosario [cre]. \emph{pwr} is licensed under GPL (>= 3).
 #'
 #'
 #' @param betaMatrix A matrix of beta-values where the rows are the CpG probes and the columns are the samples.
@@ -295,7 +295,7 @@ powerCalc <- function(betaMatrix,
     powerAnalysis = rbind(powerAnalysis, res)
 
     # progress
-    # cat(sprintf("\r%.3f%%", (i / (loop_lim) * 100)))
+    message(sprintf("\r%.3f%%", (i / (loop_lim) * 100)))
   }
   message("\n")
   message("[Step 4]\n")

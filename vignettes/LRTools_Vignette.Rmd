@@ -23,10 +23,11 @@ library(LRTools)
 ## Introduction ##
 This is a small collection of the most useful functions I wrote during my master project. The package consists of functions that are necessary for the bioinformatics pipeline that I used to analyze Illumina HM450 and EPIC data. The package also includes other useful functions that can be helpful when analyzing DNA methylation data from these platforms.
 
-### Installation & Dependecies ###
+## Installation & Dependecies ##
 To install this package use : ```devtools::install_github("LionelRohner/LRTools")``` <br />
 Following packages are required to use all functions of this pacakge: ```matrixStats, pwr, ChAMP, ChAMPdata, akmedoids, ggplot2```
 
+## Functions ##
 
 ### Beta_To_M ###
 
@@ -61,45 +62,45 @@ This is a modification of the function "champ.load" from the \emph{ChAMP} packag
 The modification are minor, see line 94 and 104 to 111, everything else is from the \emph{ChAMP} package created by Yuan Tian \link{cre,aut}, Tiffany Morris \link{ctb}, Lee Stirling \link{ctb}, Andrew Feber \link{ctb}, Andrew Teschendorff \link{ctb}, Ankur Chakravarthy \link{ctb}. \emph{ChAMP} is licensed under GPL-3.
 
 #### Arguments ####
-**sampleSheet.csv:** An optional argument, that allows to add the name of a specific sample sheet using regular expressions.}
+- **sampleSheet.csv:** An optional argument, that allows to add the name of a specific sample sheet using regular expressions.}
 
-**preproc:** Choice of the preprocessing method of the rgSet. To use Noob dye bias and background correction use "Noob". The function is available in the \emph{minfi} package. Using "Raw" is the standard \emph{ChAMP} method and does not include background correction.}
+- **preproc:** Choice of the preprocessing method of the rgSet. To use Noob dye bias and background correction use "Noob". The function is available in the \emph{minfi} package. Using "Raw" is the standard \emph{ChAMP} method and does not include background correction.}
 
-**dyeMethod:** To date single sample procedure of Noob ("single") is the only choice here.}
+- **dyeMethod:** To date single sample procedure of Noob ("single") is the only choice here.}
 
-**directory:** See ChAMP manual.
+- **directory:** See ChAMP manual.
 
-**method:** See ChAMP manual.
+- **method:** See ChAMP manual.
 
-**methValue:** See ChAMP manual.
+- **methValue:** See ChAMP manual.
 
-**autoimpute:** See ChAMP manual.
+- **autoimpute:** See ChAMP manual.
 
-**filterDetP:** See ChAMP manual.
+- **filterDetP:** See ChAMP manual.
 
-**ProbeCutoff:** See ChAMP manual.
+- **ProbeCutoff:** See ChAMP manual.
 
-**SampleCutoff:** See ChAMP manual.
+- **SampleCutoff:** See ChAMP manual.
 
-**detPcut:** See ChAMP manual.
+- **detPcut:** See ChAMP manual.
 
-**filterBeads:** See ChAMP manual.
+- **filterBeads:** See ChAMP manual.
 
-**beadCutoff:** See ChAMP manual.
+- **beadCutoff:** See ChAMP manual.
 
-**filterNoCG:** See ChAMP manual.
+- **filterNoCG:** See ChAMP manual.
 
-**filterSNPs:** See ChAMP manual.
+- **filterSNPs:** See ChAMP manual.
 
-**population:** See ChAMP manual.
+- **population:** See ChAMP manual.
 
-**filterMultiHit:** See ChAMP manual.
+- **filterMultiHit:** See ChAMP manual.
 
-**filterXY:** See ChAMP manual.
+- **filterXY:** See ChAMP manual.
 
-**force:** See ChAMP manual.
+- **force:** See ChAMP manual.
 
-**arraytype:** See ChAMP manual.
+- **arraytype:** See ChAMP manual.
 
 
 #### Return: #### 
@@ -124,13 +125,13 @@ Plot the beta distribution of Infinium I and II probes before and after BMIQ-cor
 This function can be used to evaluate the beta-value distribution of Infinium I and II probes before and after probe bias correction with BMIQ. Although implemented to check BMIQ performance, this function can be used to evaluate Infinium I and II probe distribution at any step of the pipeline and is also not limited to BMIQ-corrected beta-value matrices. By default, the function represents the mean density of Infinium I and II probes across all samples. It may be advisable to check for updates to \emph{ChAMP} and \emph{ChAMPdata} as new EPIC manifests are released from time to time.
 
 #### Arguments ####
-**betaBefore:** The beta-value matrix before BMIQ correction. The rows should be CpG probes and the columns samples.
+- **betaBefore:** The beta-value matrix before BMIQ correction. The rows should be CpG probes and the columns samples.
 
-**betaAfter:** The beta-value matrix after BMIQ correction. The rows should be CpG probes and the columns samples.
+- **betaAfter:** The beta-value matrix after BMIQ correction. The rows should be CpG probes and the columns samples.
 
-**array:** Selection of the array type. For EPIC data use "EPIC" and everything else will be interpreted as HM450 data. By default HM450 data is assumed.
+- **array:** Selection of the array type. For EPIC data use "EPIC" and everything else will be interpreted as HM450 data. By default HM450 data is assumed.
 
-**sampleChoice:** To check individual samples, enter a sample name as it appears in the column names. Multiple samples can be entered with regular expressions, e.g. ""aPxxx|aPyy"".
+- **sampleChoice:** To check individual samples, enter a sample name as it appears in the column names. Multiple samples can be entered with regular expressions, e.g. ""aPxxx|aPyy"".
 
 #### Return: #### 
 - No return. A plot should appear in the \emph{Plots} pane.
@@ -147,15 +148,15 @@ checkBMIQ(betaBefore = beta,
 
 ### cohensD_Paired ###
 
-Plot the beta distribution of Infinium I and II probes before and after BMIQ-correction.
+Calculate Cohen's D effect size for paired data. 
 
 #### Description:####
-This function can be used to evaluate the beta-value distribution of Infinium I and II probes before and after probe bias correction with BMIQ. Although implemented to check BMIQ performance, this function can be used to evaluate Infinium I and II probe distribution at any step of the pipeline and is also not limited to BMIQ-corrected beta-value matrices. By default, the function represents the mean density of Infinium I and II probes across all samples. It may be advisable to check for updates to \emph{ChAMP} and \emph{ChAMPdata} as new EPIC manifests are released from time to time.
+This function calculates Cohen's D for paired data. The formula was taken from the \emph{rstatix} package.
 
 #### Arguments ####
-**meanD:** Mean of the differences between measurements}
+- **meanD:** Mean of the differences between measurements}
 
-**sigmaD:** SD of the differences between measurements}
+- **sigmaD:** SD of the differences between measurements}
 
 #### Return: #### 
 - Cohen's D for paired data. Adapted from \emph{rstatix}
@@ -172,4 +173,340 @@ sigmaD <- sd(D)
 cohensD_Paired(meanD = meanD,
                sigmaD = sigmaD)
 
+```
+
+
+### cohensD ###
+
+Calculate standard Cohen's D effect size.
+
+#### Description:####
+This function calculates Cohen's D, an effect size measure. If sample sizes are not equal use the unbiased modifier.
+
+- **if n $\neq$ m: ** $\text{Cohen's D} = \frac{\bar{X} -  \bar{Y}}{\sqrt{s^2_{pool}}}, \quad S_{pool}= \frac{((n-1)\sigma^2_X+(m-1)\sigma^2_Y)}{n+m-2}$ <br /> where $\bar{X}$ and $\bar{Y}$ are the mean of the groups, $\sigma^2_X$ and $\sigma^2_Y$ are the variances of the groups, $s^2_{pool}$ is the pooled variance deviation, and n and m are the sample size of group X and Y. This effect size calculation should be used when sample sizes are not equal.
+
+- **if n = m: **  $\text{Cohen's D} = \frac{\bar{X} -  \bar{Y}}{\sqrt{s^2_{pool}}}, \quad S_{pool}= \frac{(\sigma^2_X+\sigma^2_Y)}{2}$
+
+
+#### Arguments ####
+- **meanA:** Mean of Group A.
+
+- **meanB:** Mean of Group B.
+
+- **sdA:** SD of Group A.
+
+- **sdB:** SD of Group B.
+
+- **nA:** Sample size of Group A.
+
+- **nB:** Sample size of Group B.
+
+- **unequalSampleSize:** If set to FALSE the sample size will be assumed to be equal.
+
+- **verbose:** Extra printed information.
+
+
+#### Return: #### 
+- Cohen's D.
+
+
+#### Examples:#### 
+
+```{r}
+GroupA <- rnorm(1000,10, 2)
+GroupB <- rnorm(1000,20, 4)
+
+meanGroupA <- mean(GroupA)
+meanGroupB <- mean(GroupB)
+
+sigmaGroupA <- sd(GroupA)
+sigmaGroupB <- sd(GroupB)
+
+cohensD(meanA = meanGroupA,
+        meanB = meanGroupB,
+        sdA = sigmaGroupA,
+        sdB = sigmaGroupB,
+        nA = 1000, nB = 1000,
+        unbiased = TRUE,
+        verbose = TRUE)
+
+```
+
+### exVarPlot ###
+
+Visualize explained variance of PC-1 and PC-2 of a matrix contaning only the most variable rows.
+
+#### Description:####
+To be honest, I am not entirely sure how informative this function is. I used it to see how much the explained variance of the PCs varies in the lower tail in order to choose a suitable number of the most variable CpG-probes. This number can be quite arbitrary, and if this number is in a region of the distribution that fluctuates a lot, it may be wiser to reconsider the number of most variable rows. Explained variance is calculated as the ratio of eigenvalues of PC-1 or PC-2 divided by the sum of all eigenvalues as proposed here: https://stats.stackexchange.com/questions/254592/calculating-pca-variance-explained/254598.
+
+
+#### Arguments ####
+- **mat:** A matrix of numeric values, where rows are probes, genes, metabolites, etc. and the columns are samples.
+
+- **lowerLim:** The lower limit of the most variable row entries.
+
+- **upperLim:** The upper limit of the most variable row entries.
+
+- **stepSize:** The step size. By default the step size is 10.
+
+- **onlyPC1:** Only consider PC-1. Is "FALSE" by default.
+
+
+#### Return: #### 
+- A plot and a data.frame with the explained variance of PC-1 or PC-1 + PC-2 at each step.
+
+
+#### Examples:#### 
+
+```{r, results=FALSE, echo=FALSE,fig.width = 8, fig.height = 5}
+A <- data.frame(rnorm(1000,0.2,0.01),runif(1000,0.2,0.75),rnorm(1000,0.75,0.05),
+                          rnorm(1000,0.2,0.01),runif(1000,0.2,0.6),rnorm(1000,0.6,0.05))
+
+rownames(A) <- paste("cg",sample(10000000:99999999,1000,replace = FALSE), sep ="")
+colnames(A) <- rep(paste("Sample_",1:6,sep=""))
+
+A <- as.matrix(A)
+
+X <- exVarPlot(mat=A,
+               lowerLim = 10,
+               upperLim = 1000)
+
+```
+```{r}
+head(X)
+``` 
+
+
+### NamesDeltaBetaCut ###
+
+Extraction of CpG-probes IDs or indices based on delta beta-values
+
+#### Description:####
+The purpose of this function is to find the row names or indices of the CpG probe that have a certain absolute delta beta-value difference between two groups of choice. The function is restricted to comparison of two groups.
+
+
+#### Arguments ####
+- **pd:** A \emph{minfi}- or \emph{ChAMP}-type sample sheet.
+
+- **feature:** The name of the group variable as it appears in the sample sheet.
+
+- **beta:** A beta-value matrix, where rows are CpG probes and columns are samples.
+
+- **group1_Name:** The string representation of the factor corresponding to group 1 in the group variable "feature".
+
+- **group2_Name:** Same as above, but for the other group.
+
+- **deltaBetaThreshold:** The desired delta beta-value threshold. The delta beta-value is the mean difference in beta-values between two groups. The value is converted to an absolute value. The default is 0.2.
+
+- **returnIndeces:** By setting "returnIndices" to "TRUE" the function will return the indices of the CpG probes in the original beta-value matrix instead of the row names. Is set to "FALSE" by default.
+
+- **sampleNames:** If the column containing the sample names in the pd is not named "Sample_Name" (ChAMP default naming convention), the column name has to be added separately. By default the function assumes the name to be "Sample_Name".
+
+
+#### Return: #### 
+- A vector containing the row names (by default the CpG-probe ID) or indices of CpG-probes that have a user-defined delta beta difference between two groups of interest.
+
+
+#### Examples:#### 
+
+```{r, fig.width = 8, fig.height = 5}
+# create some random matrix
+A <- data.frame(runif(1000,0.2,1),runif(1000,0.3,1),runif(1000,0.5,0.99),
+                runif(1000,0.1,0.7),runif(1000,0.2,0.6),runif(1000,0,0.6))
+
+rownames(A) <- paste("cg",sample(10000000:99999999,1000,replace = FALSE), sep ="")
+colnames(A) <- rep(paste("Sample_",1:6,sep=""))
+
+pd <- cbind.data.frame(colnames(A),c(rep("Group_1",3),rep("Group_2",3)))
+colnames(pd) <- c("Sample_Names","Groups")
+
+inclusion <- NamesDeltaBetaCut(pd = pd,
+                               feature = pd$Groups,
+                               beta = A,
+                               group1_Name = "Group_1",
+                               group2_Name = "Group_2",
+                               deltaBetaThreshold = 0.2,
+                               returnIndeces = FALSE,
+                               sampleNames = "Sample_Names")
+
+# Plot results
+A_filtered <- A[rownames(A) %in% inclusion,]
+Group1 <- paste("^",pd[which(pd$Groups == "Group_1"), "Sample_Names"],"$",
+                collapse = "|", sep = "")
+Group2 <- paste("^",pd[which(pd$Groups == "Group_2"), "Sample_Names"],"$",
+                collapse = "|", sep = "")
+
+meanG1 <- rowMeans(A[,grep(Group1, colnames(A))])
+meanG2 <- rowMeans(A[,grep(Group2, colnames(A))])
+
+hist(meanG1-meanG2, xlab = "delta beta-values",
+     main = "All (grey) vs. filtered delta beta-values (red)")
+
+meanG1_filtered <- rowMeans(A_filtered[,grep(Group1, colnames(A_filtered))])
+meanG2_filtered <- rowMeans(A_filtered[,grep(Group2, colnames(A_filtered))])
+
+hist(meanG1_filtered-meanG2_filtered, col = rgb(0.8,0.1,0.1,0.3),add = TRUE)
+``` 
+
+
+### powerCalc ###
+
+Power and sample size estimation
+
+#### Description:####
+The purpose of this function is to evaluate the power and estimated sample size across all CpG probes present in a beta-value or M-value matrix. The calculation of power and sample size estimation are based on the t-test functions of the \emph{pwr} package and can only be performed between features that have two levels, e.g., primary PanNET versus metastasis. PowerCalc works for normal two-group designs or paired designs.
+The core functions used in powerCalc are from the \emph{pwr} package created by Stephane Champely \link{aut}, Claus Ekstrom \link{ctb}, Peter Dalgaard \link{ctb}, Jeffrey Gill \link{ctb}, Stephan Weibelzahl \link{ctb}, Aditya Anandkumar \link{ctb}, Clay Ford \link{ctb}, Robert Volcic \link{ctb}, and Helios De Rosario \link{cre}. \emph{pwr} is licensed under GPL (>= 3).
+
+
+#### Arguments ####
+- **betaMatrix:** A matrix of beta-values where the rows are the CpG probes and the columns are the samples.
+
+- **pdGroups:** A \emph{minfi}- or \emph{ChAMP}-type sample sheet with group information, e.g. pd\$Sample\_Group.
+
+- **nameGroups:** Name of the groups, e.g. c("Met", "Primary").
+
+- **alpha:** Desired alpha-significance level.
+
+- **power:** Desired power.
+
+- **cutOff:** The power and sample size estimation is omitted if the effect size (Cohen's D) of a probe is less than the desired cutoff. Use this with caution as information about many CpG probes will be lost.
+
+- **type:** Can be "paired" or "limma". Any other string will lead to the standard two.sample t-test procedure of \emph{pwr}.
+
+- **limmaFit:** A \emph{LIMMA} LMfit object with one contrast can be added to calculate the effect size based on the posterior values for the residual variances obtained from the empirical Bayes procedure.
+
+- **pairs:** Pair information of sample sheet, e.g. pd\$Pairs.
+
+- **M:** Convert beta-values to M-values.
+
+
+#### Return: #### 
+- A data.frame containing CpG probe-wise power, estimated sample size, and Cohen's D. Depending on the type other information are included (e.g. mean and SD of the difference between 2 groups when type = "paired).
+
+#### Examples:#### 
+
+```{r, results=F, message=F, fig.width = 8, fig.height = 5}
+A <- data.frame(runif(1000,0.5,1),runif(1000,0.4,0.8),runif(1000,0.6,0.99),
+                runif(1000,0.1,0.5),runif(1000,0.2,0.6),runif(1000,0,0.4))
+
+colnames(A) <- rep(paste("Sample_",1:6,sep=""))
+pd <- data.frame(c(rep("Group_1",3),rep("Group_2",3)))
+colnames(pd) <- "Groups"
+
+A <- as.matrix(A)
+
+PC <- powerCalc(betaMatrix = A,
+                type = "unpaired",
+                pdGroups = pd$Groups,
+                nameGroups = c("Group_1","Group_2"),
+                M = TRUE,
+                cutOff = 0.1)
+``` 
+```{r}
+head(PC)
+```
+
+
+### powerCalcPlot ###
+
+Plotting PowerCalc Results
+
+#### Description:####
+Plotting function for powerCalc sample estimation. Generates a plot of the estimated sample size as a function of the CpG probes that have a power of 0.8.
+
+
+#### Arguments ####
+- **...:** Any data.frames produced by powerCalc.
+
+- **sampleSizeSteps:** Estimated sample sizes for which the number of CpG-probes with power of 0.8 are calculated. Represents the range that will be plotted. By default this is "c(5,10,15,20,25,30,35,40,45,50)".
+
+- **returnCleanPlotObj:** Returns an empty ggplot2 object that can be modified. Is set to "FALSE" by default.
+
+- **explicitNames:** The explicit names of the data.frames inputted in the dots argument. Maybe useful for plots shown in presentations. Assumes same order as the data.frames. Is not used by default.
+
+
+#### Return: #### 
+- A plot or a ggplot object depending on returnCleanPlotObj choice.
+
+#### Examples:#### 
+
+```{r, results=F, message=F, fig.width = 8, fig.height = 5}
+# Standard Example
+
+A <- data.frame(runif(1000,0.5,1),runif(1000,0.4,0.8),runif(1000,0.6,0.99),
+                runif(1000,0.1,0.5),runif(1000,0.2,0.6),runif(1000,0,0.4))
+
+colnames(A) <- rep(paste("Sample_",1:6,sep=""))
+pdA <- data.frame(c(rep("Group_1",3),rep("Group_2",3)))
+colnames(pdA) <- "Groups"
+
+A <- as.matrix(A)
+
+powerCalcA <-powerCalc(betaMatrix = A,
+                       type = "unpaired",
+                       pdGroups = pdA$Groups,
+                       nameGroups = c("Group_1","Group_2"),
+                       cutOff = 0.1)
+
+B <- data.frame(runif(1000,0.8,1),runif(1000,0.8,0.9),runif(1000,0.7,0.9),
+                runif(1000,0.05,0.3),runif(1000,0.2,0.3),runif(1000,0,0.3))
+
+colnames(B) <- rep(paste("Sample_",1:6,sep=""))
+pdB <- data.frame(c(rep("Group_1",3),rep("Group_2",3)))
+colnames(pdB) <- "Groups"
+
+B <- as.matrix(B)
+
+powerCalcB <-powerCalc(betaMatrix = B,
+                       type = "unpaired",
+                       pdGroups = pdB$Groups,
+                       nameGroups = c("Group_1","Group_2"),
+                       cutOff = 0.1)
+
+powerCalcPlot(powerCalcA, powerCalcB)
+
+# Example with returnCleanPlotObj and explicitNames
+
+g <- powerCalcPlot(powerCalcA, powerCalcB,
+                   returnCleanPlotObj = TRUE,
+                   explicitNames = c("Some","Thing"))
+library(ggplot2)
+g + geom_line(aes(color = Group)) + labs(title = "my Title") # + etc as you like
+```
+
+
+
+### topN_variableX ###
+
+Find top most variable row entries in a microarray data matrix.
+
+#### Description:####
+This function can be used to extract the rows that have the greatest variance for further PCA analysis.
+
+#### Arguments ####
+- **mat:** A matrix with numerical values.
+
+- **topN:** Upper bound of the number of most variable row entries. By default the 1000 most variable entries are considered.
+
+- **plot:** Show or hide plot. Is set to "TRUE" by default.
+
+#### Return: #### 
+- The input data.frame or matrix containing only the rows that have the highest variance in the data set.
+
+#### Examples:#### 
+
+```{r, results=F, message=F, fig.width = 8, fig.height = 5}
+A <- data.frame(rnorm(1000,0.2,0.01),runif(1000,0.2,0.75),rnorm(1000,0.75,0.05),
+                          rnorm(1000,0.2,0.01),runif(1000,0.2,0.6),rnorm(1000,0.6,0.05))
+
+rownames(A) <- paste("cg",sample(10000000:99999999,1000,replace = FALSE), sep ="")
+colnames(A) <- rep(paste("Sample_",1:6,sep=""))
+
+A <- as.matrix(A)
+
+top1K <- topN_variableX(mat = A,
+                        topN = 1000,
+                        plot = TRUE)
+
+top1K
 ```

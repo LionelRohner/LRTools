@@ -19,7 +19,7 @@ cohensD(meanA, meanB, sdA, sdB, nA, nB, unbiased = F, verbose = F)
 
 \item{nB}{Sample size of Group B}
 
-\item{unbiased}{If False the sample size will be assumed to be equal}
+\item{unbiased}{If set to FALSE the sample size will be assumed to be equal}
 
 \item{verbose}{Extra printed information}
 }

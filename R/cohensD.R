@@ -8,7 +8,7 @@
 #' @param sdB SD of Group B
 #' @param nA Sample size of Group A
 #' @param nB Sample size of Group B
-#' @param unbiased If False the sample size will be assumed to be equal
+#' @param unbiased If set to FALSE the sample size will be assumed to be equal
 #' @param verbose Extra printed information
 #'
 #' @return Cohen's D
@@ -35,7 +35,7 @@ cohensD <- function(meanA,meanB,sdA,sdB,nA,nB, unbiased = F, verbose = F){
 
   if (verbose == T){
     spool <- sqrt((sdA^2+sdB^2)/2)
-    print(paste("Pooled Variance : ", as.numeric(spool)),quote = F)
+    print(paste("Pooled standard deviation : ", as.numeric(spool)),quote = F)
   }
 
   # unbiased has to be used if nA and nB are not equal

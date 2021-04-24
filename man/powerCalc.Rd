@@ -2,7 +2,7 @@
 % Please edit documentation in R/powerCalc.R
 \name{powerCalc}
 \alias{powerCalc}
-\title{powerCalc}
+\title{Power and sample size estimation}
 \usage{
 powerCalc(
   betaMatrix,
@@ -43,7 +43,7 @@ A data.frame containing CpG probe-wise power, estimated sample size, and Cohen's
 }
 \description{
 The purpose of this function is to evaluate the power and estimated sample size across all CpG probes present in a beta-value or M-value matrix. The calculation of power and sample size estimation are based on the t-test functions of the \emph{pwr} package and can only be performed between features that have two levels, e.g., primary PanNET versus metastasis. PowerCalc works for normal two-group designs or paired designs.
-The core functions used in powerCalc are from the \emph{pwr} package created by Stephane Champely \link{aut}, Claus Ekstrom \link{ctb}, Peter Dalgaard \link{ctb}, Jeffrey Gill \link{ctb}, Stephan Weibelzahl \link{ctb}, Aditya Anandkumar \link{ctb}, Clay Ford \link{ctb}, Robert Volcic \link{ctb}, and Helios De Rosario \link{cre}. \emph{pwr} is licensed under GPL (>= 3).
+The core functions used in powerCalc are from the \emph{pwr} package created by Stephane Champely (aut), Claus Ekstrom (ctb), Peter Dalgaard (ctb), Jeffrey Gill (ctb), Stephan Weibelzahl (ctb), Aditya Anandkumar (ctb), Clay Ford (ctb), Robert Volcic (ctb), and Helios De Rosario \link{cre}. \emph{pwr} is licensed under GPL (>= 3).
 }
 \examples{
 A <- data.frame(runif(1000,0.5,1),runif(1000,0.4,0.8),runif(1000,0.6,0.99),

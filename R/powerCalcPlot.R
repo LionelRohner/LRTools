@@ -1,6 +1,8 @@
-#' PLotting PowerCalc Results
+#' Plotting PowerCalc Results
 #'
-#' @param ... Any data.frames produced by powerCalc
+#' Plotting function for powerCalc sample estimation. Generates a plot of the estimated sample size as a function of the CpG probes that have a power of 0.8.
+#'
+#' @param ... Any data.frames produced by powerCalc.
 #' @param sampleSizeSteps Estimated sample sizes for which the number of CpG-probes with power of 0.8 are calculated. Represents the range that will be plotted. By default this is "c(5,10,15,20,25,30,35,40,45,50)".
 #' @param returnCleanPlotObj Returns an empty ggplot2 object that can be modified. Is set to "FALSE" by default.
 #' @param explicitNames The explicit names of the data.frames inputted in the dots argument. Maybe useful for plots shown in presentations. Assumes same order as the data.frames. Is not used by default.
@@ -8,7 +10,8 @@
 #' @return A plot or a ggplot object depending on returnCleanPlotObj choice.
 #' @export
 #'
-#' @examples # Standard Example
+#' @examples
+#' # Standard Example
 #'
 #' A <- data.frame(runif(1000,0.5,1),runif(1000,0.4,0.8),runif(1000,0.6,0.99),
 #'                 runif(1000,0.1,0.5),runif(1000,0.2,0.6),runif(1000,0,0.4))
@@ -42,11 +45,11 @@
 #'
 #' powerCalcPlot(powerCalcA, powerCalcB)
 #'
-#' # Example with "returnCleanPlotObj" and "explicitNames"
+#' # Example with returnCleanPlotObj and explicitNames
 #'
 #' g <- powerCalcPlot(powerCalcA, powerCalcB,
-#'                    returnCleanPlotObj = T,
-#'                    explicitNames = c("I Am",The Greatest"))
+#'                    returnCleanPlotObj = TRUE,
+#'                    explicitNames = c("I Am","The Greatest"))
 #' library(ggplot2)
 #' g + geom_line(aes(color = Group)) + labs(title = "my Title") # + etc as you like
 powerCalcPlot <- function(...,
