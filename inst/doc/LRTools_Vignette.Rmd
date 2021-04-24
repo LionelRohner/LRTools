@@ -55,7 +55,7 @@ head(vecM)
 
 ### champ.load_extended ###
 
-Modified champ.load function from the \emph{ChAMP} package
+Modified champ.load function from the \emph{ChAMP} package.
 
 #### Description:####
 This is a modification of the function "champ.load" from the \emph{ChAMP} package, which allows to use the Noob background correction. The original function from \emph{ChAMP} loads data from IDAT files to calculate intensity and produce quality control images. Furthermore, a new argument has been added that allows to load a specific sample sheet using a regular expression. This avoids the errors of the normal loading function when multiple csv files are found in the working directory. Only the new arguments are presented here. The other arguments can be found in the \emph{ChAMP} manual here: https://rdrr.io/bioc/ChAMP/man/champ.load.html.
@@ -279,7 +279,7 @@ head(X)
 
 ### NamesDeltaBetaCut ###
 
-Extraction of CpG-probes IDs or indices based on delta beta-values
+Extraction of CpG-probes IDs or indices based on delta beta-values.
 
 #### Description:####
 The purpose of this function is to find the row names or indices of the CpG probe that have a certain absolute delta beta-value difference between two groups of choice. The function is restricted to comparison of two groups.
@@ -351,7 +351,7 @@ hist(meanG1_filtered-meanG2_filtered, col = rgb(0.8,0.1,0.1,0.3),add = TRUE)
 
 ### powerCalc ###
 
-Power and sample size estimation
+Power and sample size estimation.
 
 #### Description:####
 The purpose of this function is to evaluate the power and estimated sample size across all CpG probes present in a beta-value or M-value matrix. The calculation of power and sample size estimation are based on the t-test functions of the \emph{pwr} package and can only be performed between features that have two levels, e.g., primary PanNET versus metastasis. PowerCalc works for normal two-group designs or paired designs.
@@ -409,7 +409,7 @@ head(PC)
 
 ### powerCalcPlot ###
 
-Plotting PowerCalc Results
+Plotting PowerCalc Results.
 
 #### Description:####
 Plotting function for powerCalc sample estimation. Generates a plot of the estimated sample size as a function of the CpG probes that have a power of 0.8.
