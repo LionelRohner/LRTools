@@ -53,7 +53,7 @@ cohensD(meanA = meanGroupA,
         verbose = TRUE)
 
 
-## ---- results=FALSE, echo=FALSE,fig.width = 8, fig.height = 5-------------------------------------------------------------------------------
+## ---- results='hide', message=FALSE,fig.width = 8, fig.height = 5---------------------------------------------------------------------------
 A <- data.frame(rnorm(1000,0.2,0.01),runif(1000,0.2,0.75),rnorm(1000,0.75,0.05),
                           rnorm(1000,0.2,0.01),runif(1000,0.2,0.6),rnorm(1000,0.6,0.05))
 
@@ -171,7 +171,7 @@ g <- powerCalcPlot(powerCalcA, powerCalcB,
 library(ggplot2)
 g + geom_line(aes(color = Group)) + labs(title = "my Title") # + etc as you like
 
-## ---- results=F, message=F, fig.width = 8, fig.height = 5-----------------------------------------------------------------------------------
+## ---- results=T, message=F, fig.width = 8, fig.height = 5-----------------------------------------------------------------------------------
 A <- data.frame(rnorm(1000,0.2,0.01),runif(1000,0.2,0.75),rnorm(1000,0.75,0.05),
                           rnorm(1000,0.2,0.01),runif(1000,0.2,0.6),rnorm(1000,0.6,0.05))
 
@@ -184,5 +184,5 @@ top1K <- topN_variableX(mat = A,
                         topN = 1000,
                         plot = TRUE)
 
-top1K
+head(top1K)
 
