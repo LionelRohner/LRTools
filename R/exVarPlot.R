@@ -55,7 +55,7 @@ exVarPlot <- function(mat, lowerLim, upperLim, stepSize = 10, onlyPC1 = F){
     }
 
     # progress
-    message(sprintf("\r%.3f%%", (i / (upperLim) * 100)))
+    cat(sprintf("\r%.3f%%", (i / (upperLim) * 100)))
   }
   message("\n")
   # save results

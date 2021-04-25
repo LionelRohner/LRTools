@@ -295,7 +295,7 @@ powerCalc <- function(betaMatrix,
     powerAnalysis = rbind(powerAnalysis, res)
 
     # progress
-    message(sprintf("\r%.3f%%", (i / (loop_lim) * 100)))
+    cat(sprintf("\r%.3f%%", (i / (loop_lim) * 100)))
   }
   message("\n")
   message("[Step 4]\n")

@@ -1,6 +1,6 @@
 Package: LRTools
 Title: A collection of functions written for analyzing Illumina HM450 and EPIC data
-Version: 0.0.0.9000
+Version: 0.1.0.0000
 Authors@R: 
     person(given = "Lionel",
            family = "Rohner",

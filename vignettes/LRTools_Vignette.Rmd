@@ -19,6 +19,9 @@ knitr::opts_chunk$set(
 ```{r setup, include = F}
 library(LRTools)
 ```
+Created by Lionel Rohner
+
+Current package version: 0.1.0.0000 (beta)
 
 ## Introduction ##
 This is a small collection of the most useful functions I wrote during my master project. The package consists of functions that are necessary for the bioinformatics pipeline that I used to analyze Illumina HM450 and EPIC data. The package also includes other useful functions that can be helpful when analyzing DNA methylation data from these platforms.
