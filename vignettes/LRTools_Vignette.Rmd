@@ -23,12 +23,25 @@ Created by Lionel Rohner
 
 Current package version: 0.1.0.0000 (beta)
 
+Contact: lionel.rohner@gmail.com
+
 ## Introduction ##
 This is a small collection of the most useful functions I wrote during my master project. The package consists of functions that are necessary for the bioinformatics pipeline that I used to analyze Illumina HM450 and EPIC data. The package also includes other useful functions that can be helpful when analyzing DNA methylation data from these platforms.
 
 ## Installation & Dependecies ##
 To install this package use : ```devtools::install_github("LionelRohner/LRTools")``` <br />
-Following packages are required to use all functions of this pacakge: ```matrixStats, pwr, ChAMP, ChAMPdata, akmedoids, ggplot2```
+Following packages are required to use all functions of this package: ```matrixStats, pwr, ChAMP, ChAMPdata, akmedoids, ggplot2```
+If there are errors during the installation of ```ChAMP``` and ```ChAMPdata```, try to install these packages first using :
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("ChAMP")
+BiocManager::install("ChAMPdata")
+```
+
+
 
 ## Functions ##
 

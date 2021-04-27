@@ -12,6 +12,7 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports: matrixStats, pwr, ChAMP, ChAMPdata, akmedoids, ggplot2
+biocViews: ChAMP, ChAMPdata
+Imports: matrixStats, pwr, akmedoids, ggplot2
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
