@@ -28,10 +28,11 @@ checkBMIQ <- function(betaBefore,
   }
 
   # check args
-  if(length(grep(sampleChoice,colnames(betaBefore))) == 0){
-    message("Sample not found. Exiting...\n")
-    par(mfrow = c(1,1))
-    return(NULL)
+  if(!is.null(sampleChoice)){
+    if (length(grep(sampleChoice,colnames(betaBefore))) == 0){
+      message("Sample not found. Exiting...\n")
+      par(mfrow = c(1,1))
+      return(NULL)}
   }
 
   # check array type
